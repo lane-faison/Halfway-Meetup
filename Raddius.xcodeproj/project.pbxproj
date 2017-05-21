@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA5DF7A699353E82A9C1A84E /* Pods_Raddius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079554DCE96AAE6DD8D63DA6 /* Pods_Raddius.framework */; };
 		F6AB610E1ED1E949002BA298 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB610D1ED1E949002BA298 /* AppDelegate.swift */; };
 		F6AB61101ED1E949002BA298 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB610F1ED1E949002BA298 /* MainVC.swift */; };
 		F6AB61131ED1E949002BA298 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6AB61111ED1E949002BA298 /* Main.storyboard */; };
@@ -16,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		079554DCE96AAE6DD8D63DA6 /* Pods_Raddius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Raddius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6375F49EFFD57EA5F78F4193 /* Pods-Raddius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Raddius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Raddius/Pods-Raddius.release.xcconfig"; sourceTree = "<group>"; };
+		878CD5A60C8F05970D423551 /* Pods-Raddius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Raddius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Raddius/Pods-Raddius.debug.xcconfig"; sourceTree = "<group>"; };
 		F6AB610A1ED1E949002BA298 /* Raddius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Raddius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6AB610D1ED1E949002BA298 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6AB610F1ED1E949002BA298 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -31,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA5DF7A699353E82A9C1A84E /* Pods_Raddius.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A49883740592BCB2729628E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				079554DCE96AAE6DD8D63DA6 /* Pods_Raddius.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D7E6B44523394DD844B3A7B8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				878CD5A60C8F05970D423551 /* Pods-Raddius.debug.xcconfig */,
+				6375F49EFFD57EA5F78F4193 /* Pods-Raddius.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F6AB61011ED1E949002BA298 = {
 			isa = PBXGroup;
 			children = (
 				F6AB610C1ED1E949002BA298 /* Raddius */,
 				F6AB610B1ED1E949002BA298 /* Products */,
+				D7E6B44523394DD844B3A7B8 /* Pods */,
+				A49883740592BCB2729628E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,9 +138,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F6AB611C1ED1E949002BA298 /* Build configuration list for PBXNativeTarget "Raddius" */;
 			buildPhases = (
+				CD62720662DCB0F5ABFE02E9 /* [CP] Check Pods Manifest.lock */,
 				F6AB61061ED1E949002BA298 /* Sources */,
 				F6AB61071ED1E949002BA298 /* Frameworks */,
 				F6AB61081ED1E949002BA298 /* Resources */,
+				6CBAB7ED5F8A1C33D9A8060D /* [CP] Embed Pods Frameworks */,
+				8923F1AF61EE5EDF31769CB1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -174,6 +201,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6CBAB7ED5F8A1C33D9A8060D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Raddius/Pods-Raddius-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8923F1AF61EE5EDF31769CB1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Raddius/Pods-Raddius-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD62720662DCB0F5ABFE02E9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F6AB61061ED1E949002BA298 /* Sources */ = {
@@ -303,6 +378,7 @@
 		};
 		F6AB611D1ED1E949002BA298 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 878CD5A60C8F05970D423551 /* Pods-Raddius.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 34KC4VR7Y2;
@@ -316,6 +392,7 @@
 		};
 		F6AB611E1ED1E949002BA298 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6375F49EFFD57EA5F78F4193 /* Pods-Raddius.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 34KC4VR7Y2;
