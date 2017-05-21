@@ -54,14 +54,54 @@
 		F6AB610C1ED1E949002BA298 /* Raddius */ = {
 			isa = PBXGroup;
 			children = (
+				F6AB61231ED1EA0E002BA298 /* Utilities */,
+				F6AB61221ED1EA07002BA298 /* Resources */,
+				F6AB61211ED1EA02002BA298 /* Model */,
+				F6AB61201ED1E9FD002BA298 /* Controller */,
+				F6AB611F1ED1E9F3002BA298 /* View */,
 				F6AB610D1ED1E949002BA298 /* AppDelegate.swift */,
-				F6AB610F1ED1E949002BA298 /* ViewController.swift */,
 				F6AB61111ED1E949002BA298 /* Main.storyboard */,
 				F6AB61141ED1E949002BA298 /* Assets.xcassets */,
 				F6AB61161ED1E949002BA298 /* LaunchScreen.storyboard */,
 				F6AB61191ED1E949002BA298 /* Info.plist */,
 			);
 			path = Raddius;
+			sourceTree = "<group>";
+		};
+		F6AB611F1ED1E9F3002BA298 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		F6AB61201ED1E9FD002BA298 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F6AB610F1ED1E949002BA298 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		F6AB61211ED1EA02002BA298 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F6AB61221ED1EA07002BA298 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F6AB61231ED1EA0E002BA298 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
