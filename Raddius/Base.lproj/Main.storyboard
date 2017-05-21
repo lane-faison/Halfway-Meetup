@@ -139,7 +139,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Tve-aP-1Zz" kind="show" id="CNi-gG-SAj"/>
+                                    <action selector="searchPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="leA-ym-KAB"/>
                                 </connections>
                             </button>
                         </subviews>
