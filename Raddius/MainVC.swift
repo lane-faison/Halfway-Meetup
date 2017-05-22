@@ -28,8 +28,12 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var searchBtn: UIButton!
     
     var manager = CLLocationManager()
+    var currentPosition = CLLocationCoordinate2D()
     var userPosition = CLLocationCoordinate2D()
     var otherPostion = CLLocationCoordinate2D()
+    
+    var getUserLoc = false
+    var getOtherLoc = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,15 +51,26 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
-        userPosition = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        currentPosition = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
     }
     
     @IBAction func currentLocationBtnPressed(_ sender: UIButton) {
         currentLocationCheck.isHidden = false
+        yourLocationCheck.isHidden = true
+        userPosition = currentPosition
     }
     
+    @IBAction func getUserLocationBtnPressed(_ sender: Any) {
+        getUserLoc = true
+        getOtherLoc = false
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        present(autocompleteController, animated: true, completion: nil)
+    }
     
     @IBAction func getOtherLocationBtnPressed(_ sender: Any) {
+        getOtherLoc = true
+        getUserLoc = false
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         present(autocompleteController, animated: true, completion: nil)
@@ -76,9 +91,19 @@ extension MainVC: GMSAutocompleteViewControllerDelegate {
 //        print("Place address: \(place.formattedAddress)")
 //        print("Place attributions: \(place.attributions)")
         let coordinates = place.coordinate
-        otherPostion = coordinates
-        otherLocationCheck.isHidden = false
-        dismiss(animated: true, completion: nil)
+        
+        if getUserLoc == true {
+            userPosition = coordinates
+            yourLocationCheck.isHidden = false
+            currentLocationCheck.isHidden = true
+            dismiss(animated: true, completion: nil)
+        }
+        if getOtherLoc == true {
+            otherPostion = coordinates
+            otherLocationCheck.isHidden = false
+            dismiss(animated: true, completion: nil)
+        }
+
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
