@@ -35,38 +35,98 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="559-RD-Hmv">
-                                <rect key="frame" x="50" y="241.5" width="275" height="130"/>
+                                <rect key="frame" x="50" y="231.5" width="275" height="140"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZP-BS-F64">
-                                        <rect key="frame" x="0.0" y="0.0" width="275" height="30"/>
-                                        <color key="backgroundColor" red="0.084003582445830879" green="0.0" blue="0.65623017131979688" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Use current location">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p73-85-l0a">
-                                        <rect key="frame" x="0.0" y="50" width="275" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="lUt-jq-SrP"/>
-                                        </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcQ-Fm-EIc">
-                                        <rect key="frame" x="0.0" y="100" width="275" height="30"/>
-                                        <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Get other person's address">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="getOtherLocationBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fpa-j5-d9w"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hmp-ZD-qdV">
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="90"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZWw-bF-bxl">
+                                                <rect key="frame" x="0.0" y="0.0" width="275" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZP-BS-F64">
+                                                        <rect key="frame" x="0.0" y="0.0" width="235" height="30"/>
+                                                        <color key="backgroundColor" red="0.084003582445830879" green="0.0" blue="0.65623017131979688" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="Use your current location">
+                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="currentLocationBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="roK-eN-yX4"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="000-HK-cOy">
+                                                        <rect key="frame" x="245" y="0.0" width="30" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="30" id="LF3-nE-GFm"/>
+                                                            <constraint firstAttribute="height" constant="30" id="UtR-6Q-PBY"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJQ-KI-xZc">
+                                                <rect key="frame" x="0.0" y="30" width="275" height="30"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaI-9D-TgY">
+                                                        <rect key="frame" x="0.0" y="0.0" width="245" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jC7-r4-uAf">
+                                                        <rect key="frame" x="245" y="0.0" width="30" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="qdM-kD-bDk"/>
+                                                            <constraint firstAttribute="width" constant="30" id="zux-8u-0Yy"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Lqc-yh-3jk">
+                                                <rect key="frame" x="0.0" y="60" width="275" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtW-WF-0J5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="235" height="30"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <state key="normal" title="Set your location">
+                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                    </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="dwK-e1-ZKO">
+                                                        <rect key="frame" x="245" y="0.0" width="30" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="dTn-wA-gXY"/>
+                                                            <constraint firstAttribute="width" constant="30" id="kIa-Et-1pk"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SwB-KR-mE1">
+                                        <rect key="frame" x="0.0" y="110" width="275" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcQ-Fm-EIc">
+                                                <rect key="frame" x="0.0" y="0.0" width="235" height="30"/>
+                                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Set other person's location">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="getOtherLocationBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fpa-j5-d9w"/>
+                                                </connections>
+                                            </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="C1U-9k-pm9">
+                                                <rect key="frame" x="245" y="0.0" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="f9k-iM-Zew"/>
+                                                    <constraint firstAttribute="width" constant="30" id="oHM-us-FjX"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ATj-hk-6Cv">
-                                <rect key="frame" x="80" y="401.5" width="215" height="123"/>
+                                <rect key="frame" x="80" y="381.5" width="215" height="123"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Iel-zP-vBS">
                                         <rect key="frame" x="0.0" y="0.0" width="215" height="31"/>
@@ -130,11 +190,11 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ons-UW-6KW">
-                                <rect key="frame" x="137.5" y="567" width="100" height="50"/>
+                                <rect key="frame" x="87.5" y="607" width="200" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="EcM-Ws-oUx"/>
-                                    <constraint firstAttribute="height" constant="50" id="YcF-vz-Cqb"/>
+                                    <constraint firstAttribute="width" constant="200" id="EcM-Ws-oUx"/>
+                                    <constraint firstAttribute="height" constant="30" id="YcF-vz-Cqb"/>
                                 </constraints>
                                 <state key="normal" title="Search">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -144,11 +204,11 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.70747437699258775" green="0.81813545169198321" blue="0.88627642393112183" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="SeC-gA-WLz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Cbn-Vx-WOJ"/>
                             <constraint firstItem="4zd-Ih-WRo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DKn-9u-jVm"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ons-UW-6KW" secondAttribute="bottom" constant="50" id="Ds5-9G-a69"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ons-UW-6KW" secondAttribute="bottom" constant="30" id="Ds5-9G-a69"/>
                             <constraint firstAttribute="trailing" secondItem="559-RD-Hmv" secondAttribute="trailing" constant="50" id="I28-Su-qR4"/>
                             <constraint firstItem="ATj-hk-6Cv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="80" id="JF4-bj-9z5"/>
                             <constraint firstAttribute="trailing" secondItem="SeC-gA-WLz" secondAttribute="trailing" constant="50" id="OPo-m1-oSE"/>
@@ -158,19 +218,23 @@
                             <constraint firstItem="SeC-gA-WLz" firstAttribute="top" secondItem="4zd-Ih-WRo" secondAttribute="bottom" constant="10" id="SU4-sE-plW"/>
                             <constraint firstAttribute="trailing" secondItem="ATj-hk-6Cv" secondAttribute="trailing" constant="80" id="bMv-O9-8PV"/>
                             <constraint firstItem="Ons-UW-6KW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="g0k-jR-GM1"/>
-                            <constraint firstItem="559-RD-Hmv" firstAttribute="top" secondItem="SeC-gA-WLz" secondAttribute="bottom" constant="20" id="hdt-mD-Bye"/>
+                            <constraint firstItem="559-RD-Hmv" firstAttribute="top" secondItem="SeC-gA-WLz" secondAttribute="bottom" constant="10" id="hdt-mD-Bye"/>
                             <constraint firstItem="4zd-Ih-WRo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="ic0-K7-hhk"/>
                             <constraint firstItem="SeC-gA-WLz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="riY-kz-Snb"/>
-                            <constraint firstItem="ATj-hk-6Cv" firstAttribute="top" secondItem="559-RD-Hmv" secondAttribute="bottom" constant="30" id="xMM-SH-Tgw"/>
+                            <constraint firstItem="ATj-hk-6Cv" firstAttribute="top" secondItem="559-RD-Hmv" secondAttribute="bottom" constant="10" id="xMM-SH-Tgw"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="barSwitch" destination="JtP-RE-deW" id="RRC-Yo-fLU"/>
                         <outlet property="coffeeSwitch" destination="NTa-O5-fsc" id="Anv-ym-7pU"/>
                         <outlet property="currentLocationBtn" destination="SZP-BS-F64" id="aHj-d3-ifS"/>
+                        <outlet property="currentLocationCheck" destination="000-HK-cOy" id="MU5-yq-pBH"/>
+                        <outlet property="otherLocationBtn" destination="PcQ-Fm-EIc" id="QBY-SS-Ggb"/>
+                        <outlet property="otherLocationCheck" destination="C1U-9k-pm9" id="9iH-eS-AeE"/>
                         <outlet property="restaurantSwitch" destination="LTy-0b-7jA" id="LtR-iI-Fcc"/>
                         <outlet property="searchBtn" destination="Ons-UW-6KW" id="DPm-d8-Exi"/>
-                        <outlet property="userLocationTF" destination="p73-85-l0a" id="Tjs-3C-daw"/>
+                        <outlet property="yourLocationBtn" destination="ZtW-WF-0J5" id="2TD-1v-eAV"/>
+                        <outlet property="yourLocationCheck" destination="dwK-e1-ZKO" id="x1n-Uj-kGS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -266,5 +330,6 @@
     </scenes>
     <resources>
         <image name="Logo" width="400" height="502"/>
+        <image name="check" width="400" height="388"/>
     </resources>
 </document>
