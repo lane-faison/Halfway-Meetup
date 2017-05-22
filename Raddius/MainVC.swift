@@ -31,6 +31,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     var currentPosition = CLLocationCoordinate2D()
     var userPosition = CLLocationCoordinate2D()
     var otherPostion = CLLocationCoordinate2D()
+    var positions: Positions?
     
     var getUserLoc = false
     var getOtherLoc = false
@@ -52,6 +53,12 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
         currentPosition = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        positions = Positions(thisUsersLocation: userPosition, otherUsersLocation: otherPostion)
+        let destinationVC = segue.destination as? ResultsVC
+        destinationVC?.positions = positions
     }
     
     @IBAction func currentLocationBtnPressed(_ sender: UIButton) {
@@ -77,9 +84,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func searchPressed(_ sender: UIButton) {
-        let positions = Positions(thisUsersLocation: userPosition, otherUsersLocation: otherPostion)
-        print("This positions: \(positions.thisUsersLocation)")
-        print("Other positions: \(positions.otherUsersLocation)")
+        performSegue(withIdentifier: "ResultsVC", sender: positions)
     }
     
 }
