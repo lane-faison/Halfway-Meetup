@@ -31,6 +31,9 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     var userPosition = CLLocationCoordinate2D()
     var otherPostion = CLLocationCoordinate2D()
     
+    var getUserLoc = false
+    var getOtherLoc = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,8 +57,17 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         currentLocationCheck.isHidden = false
     }
     
+    @IBAction func getYourLocationBtnPressed(_ sender: UIButton) {
+        getUserLoc = true
+        getOtherLoc = false
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        present(autocompleteController, animated: true, completion: nil)
+    }
     
-    @IBAction func getOtherLocationBtnPressed(_ sender: Any) {
+    @IBAction func getOtherLocationBtnPressed(_ sender: UIButton) {
+        getUserLoc = false
+        getOtherLoc = true
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         present(autocompleteController, animated: true, completion: nil)
@@ -76,9 +88,16 @@ extension MainVC: GMSAutocompleteViewControllerDelegate {
 //        print("Place address: \(place.formattedAddress)")
 //        print("Place attributions: \(place.attributions)")
         let coordinates = place.coordinate
-        otherPostion = coordinates
-        otherLocationCheck.isHidden = false
-        dismiss(animated: true, completion: nil)
+        if getUserLoc == true {
+            userPosition = coordinates
+            yourLocationCheck.isHidden = false
+            dismiss(animated: true, completion: nil)
+        }
+        if getOtherLoc == true {
+            otherPostion = coordinates
+            otherLocationCheck.isHidden = false
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
