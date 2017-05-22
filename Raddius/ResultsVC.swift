@@ -11,6 +11,7 @@ import MapKit
 
 class ResultsVC: UIViewController {
     
+    @IBOutlet weak var mapView: MKMapView!
     var positions: Positions!
 
     override func viewDidLoad() {
@@ -19,8 +20,11 @@ class ResultsVC: UIViewController {
         print(positions.thisUsersLocation)
         print(positions.otherUsersLocation)
         print("######")
+        
+        let distanceSpan: CLLocationDegrees = 10000
+        
+        mapView.setRegion(MKCoordinateRegionMakeWithDistance(positions.thisUsersLocation, distanceSpan, distanceSpan), animated: true)
 
-        // Do any additional setup after loading the view.
     }
 
 }

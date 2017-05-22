@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BA5DF7A699353E82A9C1A84E /* Pods_Raddius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079554DCE96AAE6DD8D63DA6 /* Pods_Raddius.framework */; };
+		F6105E811ED3935D00C09E62 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6105E801ED3935D00C09E62 /* MapKit.framework */; };
 		F6AB610E1ED1E949002BA298 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB610D1ED1E949002BA298 /* AppDelegate.swift */; };
 		F6AB61101ED1E949002BA298 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB610F1ED1E949002BA298 /* MainVC.swift */; };
 		F6AB61131ED1E949002BA298 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6AB61111ED1E949002BA298 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 		079554DCE96AAE6DD8D63DA6 /* Pods_Raddius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Raddius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6375F49EFFD57EA5F78F4193 /* Pods-Raddius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Raddius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Raddius/Pods-Raddius.release.xcconfig"; sourceTree = "<group>"; };
 		878CD5A60C8F05970D423551 /* Pods-Raddius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Raddius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Raddius/Pods-Raddius.debug.xcconfig"; sourceTree = "<group>"; };
+		F6105E801ED3935D00C09E62 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F6AB610A1ED1E949002BA298 /* Raddius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Raddius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6AB610D1ED1E949002BA298 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6AB610F1ED1E949002BA298 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -37,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6105E811ED3935D00C09E62 /* MapKit.framework in Frameworks */,
 				BA5DF7A699353E82A9C1A84E /* Pods_Raddius.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,6 +50,7 @@
 		A49883740592BCB2729628E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F6105E801ED3935D00C09E62 /* MapKit.framework */,
 				079554DCE96AAE6DD8D63DA6 /* Pods_Raddius.framework */,
 			);
 			name = Frameworks;
@@ -171,6 +175,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 34KC4VR7Y2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

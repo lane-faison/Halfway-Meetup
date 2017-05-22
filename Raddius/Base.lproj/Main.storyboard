@@ -256,25 +256,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GZ1-uR-ATu">
-                                <rect key="frame" x="0.0" y="20" width="375" height="300"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GLg-bh-HlZ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="400"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="J5W-aa-zfD"/>
+                                    <constraint firstAttribute="height" constant="400" id="kUk-Zq-PA2"/>
                                 </constraints>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GZ1-uR-ATu" firstAttribute="centerX" secondItem="XZ2-AA-K14" secondAttribute="centerX" id="bt3-7L-iFN"/>
-                            <constraint firstItem="GZ1-uR-ATu" firstAttribute="top" secondItem="UE7-1L-92m" secondAttribute="bottom" id="kqc-ee-pv8"/>
-                            <constraint firstItem="GZ1-uR-ATu" firstAttribute="leading" secondItem="XZ2-AA-K14" secondAttribute="leading" id="r2W-mI-Hou"/>
-                            <constraint firstAttribute="trailing" secondItem="GZ1-uR-ATu" secondAttribute="trailing" id="yEd-pb-ZpK"/>
+                            <constraint firstItem="GLg-bh-HlZ" firstAttribute="top" secondItem="UE7-1L-92m" secondAttribute="bottom" id="CzM-t0-HyP"/>
+                            <constraint firstItem="GLg-bh-HlZ" firstAttribute="leading" secondItem="XZ2-AA-K14" secondAttribute="leading" id="Elz-83-Blk"/>
+                            <constraint firstAttribute="trailing" secondItem="GLg-bh-HlZ" secondAttribute="trailing" id="b41-cQ-sH2"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="mapView" destination="GLg-bh-HlZ" id="9A5-ah-dFg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nxi-Pb-w3K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="901.60000000000002" y="37.331334332833585"/>
+            <point key="canvasLocation" x="988" y="31"/>
         </scene>
     </scenes>
     <resources>
