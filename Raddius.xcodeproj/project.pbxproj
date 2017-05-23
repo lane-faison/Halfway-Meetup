@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		BA5DF7A699353E82A9C1A84E /* Pods_Raddius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079554DCE96AAE6DD8D63DA6 /* Pods_Raddius.framework */; };
 		F6105E811ED3935D00C09E62 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6105E801ED3935D00C09E62 /* MapKit.framework */; };
-		F6105E831ED3F9DD00C09E62 /* AnnotationPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6105E821ED3F9DD00C09E62 /* AnnotationPoint.swift */; };
+		F668B5F51ED4AF7400A26A3A /* Cafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F668B5F41ED4AF7400A26A3A /* Cafe.swift */; };
+		F668B5F71ED4AF9100A26A3A /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F668B5F61ED4AF9100A26A3A /* Restaurant.swift */; };
+		F668B5F91ED4AFA200A26A3A /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F668B5F81ED4AFA200A26A3A /* Bar.swift */; };
+		F668B5FB1ED4BB9900A26A3A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F668B5FA1ED4BB9900A26A3A /* Constants.swift */; };
 		F6AB610E1ED1E949002BA298 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB610D1ED1E949002BA298 /* AppDelegate.swift */; };
 		F6AB61101ED1E949002BA298 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB610F1ED1E949002BA298 /* MainVC.swift */; };
 		F6AB61131ED1E949002BA298 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6AB61111ED1E949002BA298 /* Main.storyboard */; };
@@ -24,7 +27,10 @@
 		6375F49EFFD57EA5F78F4193 /* Pods-Raddius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Raddius.release.xcconfig"; path = "Pods/Target Support Files/Pods-Raddius/Pods-Raddius.release.xcconfig"; sourceTree = "<group>"; };
 		878CD5A60C8F05970D423551 /* Pods-Raddius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Raddius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Raddius/Pods-Raddius.debug.xcconfig"; sourceTree = "<group>"; };
 		F6105E801ED3935D00C09E62 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		F6105E821ED3F9DD00C09E62 /* AnnotationPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationPoint.swift; sourceTree = "<group>"; };
+		F668B5F41ED4AF7400A26A3A /* Cafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cafe.swift; sourceTree = "<group>"; };
+		F668B5F61ED4AF9100A26A3A /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		F668B5F81ED4AFA200A26A3A /* Bar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
+		F668B5FA1ED4BB9900A26A3A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F6AB610A1ED1E949002BA298 /* Raddius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Raddius.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6AB610D1ED1E949002BA298 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6AB610F1ED1E949002BA298 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -122,7 +128,9 @@
 			isa = PBXGroup;
 			children = (
 				F6AB612C1ED2B430002BA298 /* Positions.swift */,
-				F6105E821ED3F9DD00C09E62 /* AnnotationPoint.swift */,
+				F668B5F41ED4AF7400A26A3A /* Cafe.swift */,
+				F668B5F61ED4AF9100A26A3A /* Restaurant.swift */,
+				F668B5F81ED4AFA200A26A3A /* Bar.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -137,6 +145,7 @@
 		F6AB61231ED1EA0E002BA298 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F668B5FA1ED4BB9900A26A3A /* Constants.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -271,10 +280,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6AB61101ED1E949002BA298 /* MainVC.swift in Sources */,
+				F668B5F91ED4AFA200A26A3A /* Bar.swift in Sources */,
+				F668B5F51ED4AF7400A26A3A /* Cafe.swift in Sources */,
+				F668B5F71ED4AF9100A26A3A /* Restaurant.swift in Sources */,
 				F6AB61271ED20AFC002BA298 /* ResultsVC.swift in Sources */,
-				F6105E831ED3F9DD00C09E62 /* AnnotationPoint.swift in Sources */,
 				F6AB612D1ED2B430002BA298 /* Positions.swift in Sources */,
 				F6AB610E1ED1E949002BA298 /* AppDelegate.swift in Sources */,
+				F668B5FB1ED4BB9900A26A3A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
