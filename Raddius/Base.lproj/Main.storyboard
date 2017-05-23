@@ -256,29 +256,13 @@
                     <view key="view" contentMode="scaleToFill" id="XZ2-AA-K14">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GLg-bh-HlZ">
-                                <rect key="frame" x="0.0" y="40" width="375" height="400"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="kUk-Zq-PA2"/>
-                                </constraints>
-                            </mapView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="GLg-bh-HlZ" firstAttribute="leading" secondItem="XZ2-AA-K14" secondAttribute="leading" id="Elz-83-Blk"/>
-                            <constraint firstAttribute="trailing" secondItem="GLg-bh-HlZ" secondAttribute="trailing" id="b41-cQ-sH2"/>
-                            <constraint firstItem="GLg-bh-HlZ" firstAttribute="top" secondItem="UE7-1L-92m" secondAttribute="bottom" constant="20" id="rMI-Ho-juP"/>
-                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <connections>
-                        <outlet property="mapView" destination="GLg-bh-HlZ" id="9A5-ah-dFg"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nxi-Pb-w3K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1207" y="92"/>
+            <point key="canvasLocation" x="1012" y="38"/>
         </scene>
     </scenes>
     <resources>
