@@ -18,6 +18,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var otherLocationBtn: UIButton!
     
     @IBOutlet weak var currentLocationCheck: UIImageView!
+    @IBOutlet weak var orSpacer: UIImageView!
     @IBOutlet weak var yourLocationCheck: UIImageView!
     @IBOutlet weak var otherLocationCheck: UIImageView!
     
@@ -39,7 +40,13 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        currentLocationBtn.layer.cornerRadius = 15
+        yourLocationBtn.layer.cornerRadius = 15
+        otherLocationBtn.layer.cornerRadius = 15
+        searchBtn.layer.cornerRadius = 50
+        
         currentLocationCheck.isHidden = true
+        orSpacer.isHidden = true
         yourLocationCheck.isHidden = true
         otherLocationCheck.isHidden = true
         
@@ -63,6 +70,7 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func currentLocationBtnPressed(_ sender: UIButton) {
         currentLocationCheck.isHidden = false
+        orSpacer.isHidden = false
         yourLocationCheck.isHidden = true
         userPosition = currentPosition
     }
@@ -100,6 +108,7 @@ extension MainVC: GMSAutocompleteViewControllerDelegate {
         if getUserLoc == true {
             userPosition = coordinates
             yourLocationCheck.isHidden = false
+            orSpacer.isHidden = false
             currentLocationCheck.isHidden = true
             dismiss(animated: true, completion: nil)
         }

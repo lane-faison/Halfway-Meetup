@@ -30,10 +30,15 @@ class ResultsVC: UIViewController, MKMapViewDelegate {
         
         let userAnnotation = AnnotationPoint(coordinate: positions.thisUsersLocation)
         let otherAnnotation = AnnotationPoint(coordinate: positions.otherUsersLocation)
-
-        let distanceSpan: CLLocationDegrees = 20000
         
-        let circle = MKCircle(center: midpoint, radius: 5000)
+        let locationUser = CLLocation(latitude: positions.thisUsersLocation.latitude, longitude: positions.thisUsersLocation.longitude)
+        let locationOther = CLLocation(latitude: positions.otherUsersLocation.latitude, longitude: positions.otherUsersLocation.longitude)
+        let distance: CLLocationDistance = locationUser.distance(from: locationOther)
+        print("DISTANCE: \(distance)")
+
+        let distanceSpan: CLLocationDegrees = 2000 + distance
+        
+        let circle = MKCircle(center: midpoint, radius: distance/6)
         
         mapView.setRegion(MKCoordinateRegionMakeWithDistance(midpoint, distanceSpan, distanceSpan), animated: true)
         mapView.addAnnotation(userAnnotation)
