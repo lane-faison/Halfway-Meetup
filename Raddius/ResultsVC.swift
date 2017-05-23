@@ -12,17 +12,13 @@ import MapKit
 class ResultsVC: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
+    
     var positions: Positions!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView.delegate = self
-
-        print("######")
-        print(positions.thisUsersLocation)
-        print(positions.otherUsersLocation)
-        print("######")
         
         let midLatitude = (positions.thisUsersLocation.latitude+positions.otherUsersLocation.latitude)/2
         let midLongitude = (positions.thisUsersLocation.longitude+positions.otherUsersLocation.longitude)/2
@@ -34,17 +30,38 @@ class ResultsVC: UIViewController, MKMapViewDelegate {
         let locationUser = CLLocation(latitude: positions.thisUsersLocation.latitude, longitude: positions.thisUsersLocation.longitude)
         let locationOther = CLLocation(latitude: positions.otherUsersLocation.latitude, longitude: positions.otherUsersLocation.longitude)
         let distance: CLLocationDistance = locationUser.distance(from: locationOther)
-        print("DISTANCE: \(distance)")
-
+        
         let distanceSpan: CLLocationDegrees = 2000 + distance
         
         let circle = MKCircle(center: midpoint, radius: distance/6)
+        
+        let request = MKLocalSearchRequest()
+        
+        request.naturalLanguageQuery = "food"
         
         mapView.setRegion(MKCoordinateRegionMakeWithDistance(midpoint, distanceSpan, distanceSpan), animated: true)
         mapView.addAnnotation(userAnnotation)
         mapView.addAnnotation(otherAnnotation)
         mapView.addOverlays([circle])
-        
+        request.region = mapView.region
+        let search = MKLocalSearch(request: request)
+        search.start(completionHandler: {(result,error) in
+            for placemark in (result?.mapItems)! {
+                if(error == nil) {
+                    
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = CLLocationCoordinate2DMake(placemark.placemark.coordinate.latitude, placemark.placemark.coordinate.longitude)
+                    annotation.title = placemark.placemark.name
+                    annotation.subtitle = placemark.placemark.title
+                    self.mapView.addAnnotation(annotation)
+                    
+                }
+                else
+                {
+                    print(error ?? 0)
+                }
+            }
+        })
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -57,7 +74,5 @@ class ResultsVC: UIViewController, MKMapViewDelegate {
         }
         return MKOverlayRenderer(overlay: overlay)
     }
-
-    
     
 }
