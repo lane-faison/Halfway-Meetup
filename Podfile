@@ -9,5 +9,7 @@ target 'Raddius' do
 pod 'GooglePlaces'
 pod 'GooglePlacesPicker'
 pod 'GoogleMaps'
+pod 'Alamofire', '~> 4.4'
+
 
 end
