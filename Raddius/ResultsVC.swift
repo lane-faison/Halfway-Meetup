@@ -19,6 +19,8 @@ class ResultsVC: UIViewController {
     var circleRadius: CLLocationDegrees!
     var midpoint: CLLocationCoordinate2D!
     var cafeArray = [Cafe]()
+    var newCircleRadius: CLLocationDegrees!
+    var markerArray = [GMSMarker]()
     
     @IBOutlet weak var slider: UISlider!
     
@@ -35,6 +37,7 @@ class ResultsVC: UIViewController {
         //        let distanceSpan: CLLocationDegrees = 2000 + distance
         
         circleRadius = distance/5
+        newCircleRadius = circleRadius
         let getCallRadius: CLLocationDegrees = distance/2
         
         CAFEURL = "\(BASE_URL)\(midLatitude),\(midLongitude)&radius=\(getCallRadius)\(CAFE_URL)\(GP_API)"
@@ -107,24 +110,29 @@ class ResultsVC: UIViewController {
     }
     
     func buildCafeMarkers() {
+        markerArray.removeAll()
+        
         for cafe in cafeArray {
             let cafeMarker = GMSMarker()
             cafeMarker.position = CLLocationCoordinate2D(latitude: cafe.latitude, longitude: cafe.longitude)
             cafeMarker.title = cafe.name
-
-            let markerLocation = CLLocation(latitude: cafe.latitude, longitude: cafe.longitude)
+            markerArray.append(cafeMarker)
+        }
+        
+        for marker in markerArray {
+            let markerLocation = CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude)
             let centerOfCircle = CLLocation(latitude: midpoint.latitude, longitude: midpoint.longitude)
             let distanceToCenter: CLLocationDistance = markerLocation.distance(from: centerOfCircle)
-            if distanceToCenter < circleRadius {
-                cafeMarker.map = mapView
-                cafeMarker.icon = GMSMarker.markerImage(with: .blue)
+            if distanceToCenter < newCircleRadius {
+                marker.map = mapView
+                marker.icon = GMSMarker.markerImage(with: .blue)
             }
         }
     }
     
     @IBAction func changeCircleRadius(_ sender: UISlider) {
         circle.map = nil
-        let newCircleRadius = circleRadius*(Double(sender.value))
+        newCircleRadius = circleRadius*(Double(sender.value))
         circle = GMSCircle(position: midpoint, radius: newCircleRadius)
         circle.strokeColor = UIColor.red
         circle.strokeWidth = 2
