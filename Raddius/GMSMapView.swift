@@ -1,8 +1,8 @@
 //
-//  ResultsVC.swift
+//  GMSMapView.swift
 //  Raddius
 //
-//  Created by Lane Faison on 5/21/17.
+//  Created by Lane Faison on 5/23/17.
 //  Copyright © 2017 Lane Faison. All rights reserved.
 //
 
@@ -10,40 +10,34 @@ import UIKit
 import GoogleMaps
 import Alamofire
 
-class ResultsVC: UIViewController {
-    
+class GMSMapView: UIView {
     var positions: Positions!
     var CAFEURL: String!
-    var mapView: GMSMapView!
-    var circle: GMSCircle!
-    var circleRadius: CLLocationDegrees!
-    var midpoint: CLLocationCoordinate2D!
+    var radiusFactor: Double = 1.0
     
-    @IBOutlet weak var slider: UISlider!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+
         
         let midLatitude = (positions.thisUsersLocation.latitude+positions.otherUsersLocation.latitude)/2
         let midLongitude = (positions.thisUsersLocation.longitude+positions.otherUsersLocation.longitude)/2
-        midpoint = CLLocationCoordinate2D(latitude: midLatitude, longitude: midLongitude)
+        let midpoint = CLLocationCoordinate2D(latitude: midLatitude, longitude: midLongitude)
+        
         
         let locationUser = CLLocation(latitude: positions.thisUsersLocation.latitude, longitude: positions.thisUsersLocation.longitude)
         let locationOther = CLLocation(latitude: positions.otherUsersLocation.latitude, longitude: positions.otherUsersLocation.longitude)
         let distance: CLLocationDistance = locationUser.distance(from: locationOther)
-//        let distanceSpan: CLLocationDegrees = 2000 + distance
-
-        circleRadius = distance/5
-        let getCallRadius: CLLocationDegrees = distance/2
+        //        let distanceSpan: CLLocationDegrees = 2000 + distance
         
-        CAFEURL = "\(BASE_URL)\(midLatitude),\(midLongitude)&radius=\(getCallRadius)\(CAFE_URL)\(GP_API)"
-
+        let circleRadius = radiusFactor*distance/5
+        
+        
+        CAFEURL = "\(BASE_URL)\(midLatitude),\(midLongitude)&radius=\(circleRadius)\(CAFE_URL)\(GP_API)"
+        
+        
         print("DISTANCE: \(distance)")
         let camera = GMSCameraPosition.camera(withLatitude: midLatitude, longitude: midLongitude, zoom:13)
-        mapView = GMSMapView.map(withFrame: CGRect(x:10,y:20,width:350,height:500), camera: camera)
-//        mapView.center = self.view.center
-        self.view.addSubview(mapView)
-//        view = mapView
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        view = mapView
+        mapView.sizeThatFits(<#T##size: CGSize##CGSize#>)
         
         // Creates a marker for user's location on the map.
         let userMarker = GMSMarker()
@@ -59,16 +53,13 @@ class ResultsVC: UIViewController {
         otherMarker.map = mapView
         
         //TODO: Make radius larger for smaller distances
-        circle = GMSCircle(position: midpoint, radius:circleRadius)
+        let circle = GMSCircle(position: midpoint, radius:circleRadius)
         circle.strokeColor = UIColor.red
         circle.strokeWidth = 2
         circle.map = mapView
         
-//        downloadCafeDetails {
-//            print("$$$$$$$$$$")
-//        }
-        
-    }
+        downloadCafeDetails {
+            print("$$$$$$$$$$")
     
     func downloadCafeDetails(completed: @escaping DownloadComplete) {
         Alamofire.request(CAFEURL).responseJSON { (response) in
@@ -84,22 +75,11 @@ class ResultsVC: UIViewController {
                         print("%%%%%%%%%%%%%%%")
                     }
                 }
-            
-            
+                
+                
             }
             
             completed()
         }
     }
-
-    @IBAction func changeCircleRadius(_ sender: UISlider) {
-        circle.map = nil
-        let newCircleRadius = circleRadius*(Double(sender.value))
-        circle = GMSCircle(position: midpoint, radius: newCircleRadius)
-        circle.strokeColor = UIColor.red
-        circle.strokeWidth = 2
-        circle.map = mapView
-        print(circleRadius)
-    }
-    
 }

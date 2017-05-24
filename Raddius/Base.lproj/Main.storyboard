@@ -256,13 +256,29 @@
                     <view key="view" contentMode="scaleToFill" id="XZ2-AA-K14">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.10000000000000001" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="en5-r6-Q3P">
+                                <rect key="frame" x="48" y="537" width="279" height="31"/>
+                                <connections>
+                                    <action selector="changeCircleRadius:" destination="Tve-aP-1Zz" eventType="valueChanged" id="HSG-U6-1pd"/>
+                                </connections>
+                            </slider>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="en5-r6-Q3P" firstAttribute="leading" secondItem="XZ2-AA-K14" secondAttribute="leading" constant="50" id="UEm-nn-241"/>
+                            <constraint firstItem="3f9-dv-xxa" firstAttribute="top" secondItem="en5-r6-Q3P" secondAttribute="bottom" constant="100" id="hbP-Mi-nvS"/>
+                            <constraint firstAttribute="trailing" secondItem="en5-r6-Q3P" secondAttribute="trailing" constant="50" id="uub-K2-jCY"/>
+                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="slider" destination="en5-r6-Q3P" id="8zw-eH-2SP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nxi-Pb-w3K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="38"/>
+            <point key="canvasLocation" x="961" y="38"/>
         </scene>
     </scenes>
     <resources>
