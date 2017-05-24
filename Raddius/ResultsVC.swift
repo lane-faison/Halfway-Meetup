@@ -18,6 +18,7 @@ class ResultsVC: UIViewController {
     var circle: GMSCircle!
     var circleRadius: CLLocationDegrees!
     var midpoint: CLLocationCoordinate2D!
+    var cafeArray = [Cafe]()
     
     @IBOutlet weak var slider: UISlider!
     
@@ -31,19 +32,19 @@ class ResultsVC: UIViewController {
         let locationUser = CLLocation(latitude: positions.thisUsersLocation.latitude, longitude: positions.thisUsersLocation.longitude)
         let locationOther = CLLocation(latitude: positions.otherUsersLocation.latitude, longitude: positions.otherUsersLocation.longitude)
         let distance: CLLocationDistance = locationUser.distance(from: locationOther)
-//        let distanceSpan: CLLocationDegrees = 2000 + distance
-
+        //        let distanceSpan: CLLocationDegrees = 2000 + distance
+        
         circleRadius = distance/5
         let getCallRadius: CLLocationDegrees = distance/2
         
         CAFEURL = "\(BASE_URL)\(midLatitude),\(midLongitude)&radius=\(getCallRadius)\(CAFE_URL)\(GP_API)"
-
+        
         print("DISTANCE: \(distance)")
         let camera = GMSCameraPosition.camera(withLatitude: midLatitude, longitude: midLongitude, zoom:13)
         mapView = GMSMapView.map(withFrame: CGRect(x:10,y:20,width:350,height:500), camera: camera)
-//        mapView.center = self.view.center
+        //        mapView.center = self.view.center
         self.view.addSubview(mapView)
-//        view = mapView
+        //        view = mapView
         
         // Creates a marker for user's location on the map.
         let userMarker = GMSMarker()
@@ -64,9 +65,11 @@ class ResultsVC: UIViewController {
         circle.strokeWidth = 2
         circle.map = mapView
         
-//        downloadCafeDetails {
-//            print("$$$$$$$$$$")
-//        }
+        downloadCafeDetails {
+            print("$$$$$$$$$$")
+            print(self.cafeArray)
+            self.buildCafeMarkers()
+        }
         
     }
     
@@ -74,24 +77,51 @@ class ResultsVC: UIViewController {
         Alamofire.request(CAFEURL).responseJSON { (response) in
             
             if let dict = response.result.value as? Dictionary<String,Any> {
-                print("###1")
                 if let example = dict["results"] as? [Dictionary<String,Any>] {
-                    print("###2")
-                    print(example.count)
+                    print("######### \(example.count) #########")
                     for index in 0..<example.count {
-                        print("%%%%%%%%%%%%%%%")
-                        print(example[index])
-                        print("%%%%%%%%%%%%%%%")
+                        var cafeName: String!
+                        var cafeLatitude: Double!
+                        var cafeLongitude: Double!
+                        let place = example[index]
+                        let geometry = place["geometry"] as? Dictionary<String,Any>
+                        if let position = geometry?["location"] as? Dictionary<String,Double> {
+                            print("%%%%%%%%%%%%%%%")
+                            print(position["lat"]!)
+                            cafeLatitude = position["lat"]
+                            print(position["lng"]!)
+                            cafeLongitude = position["lng"]
+                        }
+                        if let name = place["name"] as? String {
+                            cafeName = name
+                            print(cafeName)
+                            print("%%%%%%%%%%%%%%%")
+                        }
+                        let newCafe = Cafe(latitude: cafeLatitude, longitude: cafeLongitude, name: cafeName)
+                        self.cafeArray.append(newCafe)
                     }
                 }
-            
-            
             }
-            
             completed()
         }
     }
+    
+    func buildCafeMarkers() {
+        for cafe in cafeArray {
+            let cafeMarker = GMSMarker()
+            cafeMarker.position = CLLocationCoordinate2D(latitude: cafe.latitude, longitude: cafe.longitude)
+            cafeMarker.title = cafe.name
 
+            let markerLocation = CLLocation(latitude: cafe.latitude, longitude: cafe.longitude)
+            let centerOfCircle = CLLocation(latitude: midpoint.latitude, longitude: midpoint.longitude)
+            let distanceToCenter: CLLocationDistance = markerLocation.distance(from: centerOfCircle)
+            if distanceToCenter < circleRadius {
+                cafeMarker.map = mapView
+                cafeMarker.icon = GMSMarker.markerImage(with: .blue)
+            }
+        }
+    }
+    
     @IBAction func changeCircleRadius(_ sender: UISlider) {
         circle.map = nil
         let newCircleRadius = circleRadius*(Double(sender.value))
@@ -99,7 +129,7 @@ class ResultsVC: UIViewController {
         circle.strokeColor = UIColor.red
         circle.strokeWidth = 2
         circle.map = mapView
-        print(circleRadius)
+        self.buildCafeMarkers()
     }
     
 }
