@@ -21,21 +21,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="4zd-Ih-WRo">
-                                <rect key="frame" x="127.5" y="30" width="120" height="120"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="4zd-Ih-WRo">
+                                <rect key="frame" x="87.5" y="70" width="200" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="ML8-1U-XKC"/>
-                                    <constraint firstAttribute="width" constant="120" id="ab8-bH-fCT"/>
+                                    <constraint firstAttribute="height" constant="50" id="ML8-1U-XKC"/>
+                                    <constraint firstAttribute="width" constant="200" id="ab8-bH-fCT"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Raddius" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeC-gA-WLz">
-                                <rect key="frame" x="50" y="160" width="275" height="61.5"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="45"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Halfway Meetup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeC-gA-WLz">
+                                <rect key="frame" x="50" y="130" width="275" height="44"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="559-RD-Hmv">
-                                <rect key="frame" x="50" y="231.5" width="275" height="140"/>
+                                <rect key="frame" x="50" y="224" width="275" height="140"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hmp-ZD-qdV">
                                         <rect key="frame" x="0.0" y="0.0" width="275" height="90"/>
@@ -45,9 +45,9 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZP-BS-F64">
                                                         <rect key="frame" x="0.0" y="0.0" width="235" height="30"/>
-                                                        <color key="backgroundColor" red="0.084003582445830879" green="0.0" blue="0.65623017131979688" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" red="0.53333333333333333" green="1" blue="0.49019607843137253" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="Use your current location">
-                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="currentLocationBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="roK-eN-yX4"/>
@@ -85,9 +85,9 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtW-WF-0J5">
                                                         <rect key="frame" x="0.0" y="0.0" width="235" height="30"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" red="0.53333333333333333" green="1" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal" title="Set your location">
-                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="getUserLocationBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AGo-cX-K3Z"/>
@@ -109,9 +109,9 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcQ-Fm-EIc">
                                                 <rect key="frame" x="0.0" y="0.0" width="235" height="30"/>
-                                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="1" green="0.41176470588235292" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Set other person's location">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="getOtherLocationBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fpa-j5-d9w"/>
@@ -129,7 +129,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ATj-hk-6Cv">
-                                <rect key="frame" x="80" y="381.5" width="215" height="123"/>
+                                <rect key="frame" x="80" y="374" width="215" height="123"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Iel-zP-vBS">
                                         <rect key="frame" x="0.0" y="0.0" width="215" height="31"/>
@@ -199,6 +199,7 @@
                                     <constraint firstAttribute="width" constant="100" id="EcM-Ws-oUx"/>
                                     <constraint firstAttribute="height" constant="100" id="YcF-vz-Cqb"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Search">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -222,8 +223,8 @@
                             <constraint firstItem="SeC-gA-WLz" firstAttribute="top" secondItem="4zd-Ih-WRo" secondAttribute="bottom" constant="10" id="SU4-sE-plW"/>
                             <constraint firstAttribute="trailing" secondItem="ATj-hk-6Cv" secondAttribute="trailing" constant="80" id="bMv-O9-8PV"/>
                             <constraint firstItem="Ons-UW-6KW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="g0k-jR-GM1"/>
-                            <constraint firstItem="559-RD-Hmv" firstAttribute="top" secondItem="SeC-gA-WLz" secondAttribute="bottom" constant="10" id="hdt-mD-Bye"/>
-                            <constraint firstItem="4zd-Ih-WRo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="ic0-K7-hhk"/>
+                            <constraint firstItem="559-RD-Hmv" firstAttribute="top" secondItem="SeC-gA-WLz" secondAttribute="bottom" constant="50" id="hdt-mD-Bye"/>
+                            <constraint firstItem="4zd-Ih-WRo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="ic0-K7-hhk"/>
                             <constraint firstItem="SeC-gA-WLz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="riY-kz-Snb"/>
                             <constraint firstItem="ATj-hk-6Cv" firstAttribute="top" secondItem="559-RD-Hmv" secondAttribute="bottom" constant="10" id="xMM-SH-Tgw"/>
                         </constraints>
@@ -300,7 +301,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="400" height="502"/>
+        <image name="AppLogo" width="1800" height="505"/>
         <image name="check" width="400" height="388"/>
     </resources>
 </document>

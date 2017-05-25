@@ -37,6 +37,9 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     var getUserLoc = false
     var getOtherLoc = false
     
+    var yourLocationStored: Bool!
+    var otherLocationStored: Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,11 +53,16 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         yourLocationCheck.isHidden = true
         otherLocationCheck.isHidden = true
         
+        yourLocationStored = false
+        otherLocationStored = false
+        
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
     
+        searchBtn.isEnabled = false
+        searchBtn.alpha = 0.5
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -62,10 +70,11 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         currentPosition = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        positions = Positions(thisUsersLocation: userPosition, otherUsersLocation: otherPostion)
-        let destinationVC = segue.destination as? ResultsVC
-        destinationVC?.positions = positions
+    func checkStatus() {
+        if yourLocationStored && otherLocationStored {
+            searchBtn.alpha = 1
+            searchBtn.isEnabled = true
+        }
     }
     
     @IBAction func currentLocationBtnPressed(_ sender: UIButton) {
@@ -73,6 +82,8 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         orSpacer.isHidden = false
         yourLocationCheck.isHidden = true
         userPosition = currentPosition
+        yourLocationStored = true
+        checkStatus()
     }
     
     @IBAction func getUserLocationBtnPressed(_ sender: Any) {
@@ -91,18 +102,20 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         present(autocompleteController, animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        positions = Positions(thisUsersLocation: userPosition, otherUsersLocation: otherPostion)
+        let destinationVC = segue.destination as? ResultsVC
+        destinationVC?.positions = positions
+    }
+    
     @IBAction func searchPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "ResultsVC", sender: positions)
     }
-    
 }
 
 extension MainVC: GMSAutocompleteViewControllerDelegate {
-    // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-//        print("Place name: \(place.name)")
-//        print("Place address: \(place.formattedAddress)")
-//        print("Place attributions: \(place.attributions)")
+
         let coordinates = place.coordinate
         
         if getUserLoc == true {
@@ -110,14 +123,17 @@ extension MainVC: GMSAutocompleteViewControllerDelegate {
             yourLocationCheck.isHidden = false
             orSpacer.isHidden = false
             currentLocationCheck.isHidden = true
+            yourLocationStored = true
+            checkStatus()
             dismiss(animated: true, completion: nil)
         }
         if getOtherLoc == true {
             otherPostion = coordinates
             otherLocationCheck.isHidden = false
+            otherLocationStored = true
+            checkStatus()
             dismiss(animated: true, completion: nil)
         }
-
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
