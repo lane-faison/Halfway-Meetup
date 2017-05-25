@@ -34,6 +34,10 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
     var otherPostion = CLLocationCoordinate2D()
     var positions: Positions?
     
+    var rSwitch: Bool!
+    var cSwitch: Bool!
+    var bSwitch: Bool!
+    
     var getUserLoc = false
     var getOtherLoc = false
     
@@ -56,6 +60,10 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         yourLocationStored = false
         otherLocationStored = false
         
+        rSwitch = true
+        cSwitch = false
+        bSwitch = false
+        
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
@@ -64,6 +72,31 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         searchBtn.isEnabled = false
         searchBtn.alpha = 0.5
     }
+    // SWITCHES
+    
+    @IBAction func restaurantSwitch(_ sender: UISwitch) {
+        if sender.isOn {
+            rSwitch = true
+        } else {
+            rSwitch = false
+        }
+    }
+    @IBAction func cafeSwitch(_ sender: UISwitch) {
+        if sender.isOn {
+            cSwitch = true
+        } else {
+            cSwitch = false
+        }
+    }
+    
+    @IBAction func barSwitch(_ sender: UISwitch) {
+        if sender.isOn {
+            bSwitch = true
+        } else {
+            bSwitch = false
+        }
+    }
+    // SWITCHES (END)
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
@@ -106,6 +139,10 @@ class MainVC: UIViewController, CLLocationManagerDelegate {
         positions = Positions(thisUsersLocation: userPosition, otherUsersLocation: otherPostion)
         let destinationVC = segue.destination as? ResultsVC
         destinationVC?.positions = positions
+        destinationVC?.rSwitch = rSwitch
+        destinationVC?.cSwitch = cSwitch
+        destinationVC?.bSwitch = bSwitch
+
     }
     
     @IBAction func searchPressed(_ sender: UIButton) {

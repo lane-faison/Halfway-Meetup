@@ -13,6 +13,10 @@ import Alamofire
 class ResultsVC: UIViewController {
     
     var positions: Positions!
+    var rSwitch: Bool!
+    var cSwitch: Bool!
+    var bSwitch: Bool!
+
     var BARURL: String!
     var CAFEURL: String!
     var RESTAURANTURL: String!
@@ -20,9 +24,11 @@ class ResultsVC: UIViewController {
     var circle: GMSCircle!
     var circleRadius: CLLocationDegrees!
     var midpoint: CLLocationCoordinate2D!
+    
     var cafeArray = [Cafe]()
 //    var barArray = [Bar]()
 //    var restaurantArray = [Restaurant]()
+    
     var newCircleRadius: CLLocationDegrees!
     var markerArray = [GMSMarker]()
     
@@ -31,6 +37,12 @@ class ResultsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("############")
+        print(rSwitch)
+        print(cSwitch)
+        print(bSwitch)
+        print("############")
+
         let midLatitude = (positions.thisUsersLocation.latitude+positions.otherUsersLocation.latitude)/2
         let midLongitude = (positions.thisUsersLocation.longitude+positions.otherUsersLocation.longitude)/2
         midpoint = CLLocationCoordinate2D(latitude: midLatitude, longitude: midLongitude)
@@ -44,7 +56,9 @@ class ResultsVC: UIViewController {
         newCircleRadius = circleRadius
         let getCallRadius: CLLocationDegrees = distance/2
         
+        RESTAURANTURL = "\(BASE_URL)\(midLatitude),\(midLongitude)&radius=\(getCallRadius)\(RESTAURANT_URL)\(GP_API)"
         CAFEURL = "\(BASE_URL)\(midLatitude),\(midLongitude)&radius=\(getCallRadius)\(CAFE_URL)\(GP_API)"
+        BARURL = "\(BASE_URL)\(midLatitude),\(midLongitude)&radius=\(getCallRadius)\(BAR_URL)\(GP_API)"
         
         print("DISTANCE: \(distance)")
         let camera = GMSCameraPosition.camera(withLatitude: midLatitude, longitude: midLongitude, zoom:11)
@@ -89,7 +103,6 @@ class ResultsVC: UIViewController {
                         var cafeLatitude: Double!
                         var cafeLongitude: Double!
                         var cafeRating: Int!
-//                        var cafePriceLevel: Int!
                         let place = example[index]
                         let geometry = place["geometry"] as? Dictionary<String,Any>
                         if let position = geometry?["location"] as? Dictionary<String,Double> {
@@ -110,11 +123,6 @@ class ResultsVC: UIViewController {
                         } else {
                             cafeRating = 0
                         }
-//                        if let priceLevel = place["price_level"] as? Int {
-//                            cafePriceLevel = priceLevel
-//                            print(cafePriceLevel)
-//                            print("%%%%%%%%%%%%%%%")
-//                        }
                         let newCafe = Cafe(latitude: cafeLatitude, longitude: cafeLongitude, name: cafeName, rating: cafeRating)
                         self.cafeArray.append(newCafe)
                     }
