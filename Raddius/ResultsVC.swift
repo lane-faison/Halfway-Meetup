@@ -16,7 +16,7 @@ class ResultsVC: UIViewController {
     var rSwitch: Bool!
     var cSwitch: Bool!
     var bSwitch: Bool!
-
+    
     var BARURL: String!
     var CAFEURL: String!
     var RESTAURANTURL: String!
@@ -26,23 +26,25 @@ class ResultsVC: UIViewController {
     var midpoint: CLLocationCoordinate2D!
     
     var cafeArray = [Cafe]()
-//    var barArray = [Bar]()
-//    var restaurantArray = [Restaurant]()
+    var barArray = [Bar]()
+    var restaurantArray = [Restaurant]()
     
     var newCircleRadius: CLLocationDegrees!
     var markerArray = [GMSMarker]()
     
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var redSquare: UIView!
+    @IBOutlet weak var greenSquare: UIView!
+    @IBOutlet weak var blueSquare: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("############")
-        print(rSwitch)
-        print(cSwitch)
-        print(bSwitch)
-        print("############")
+        redSquare.layer.cornerRadius = 10
+        greenSquare.layer.cornerRadius = 10
+        blueSquare.layer.cornerRadius = 10
 
+        
         let midLatitude = (positions.thisUsersLocation.latitude+positions.otherUsersLocation.latitude)/2
         let midLongitude = (positions.thisUsersLocation.longitude+positions.otherUsersLocation.longitude)/2
         midpoint = CLLocationCoordinate2D(latitude: midLatitude, longitude: midLongitude)
@@ -62,7 +64,7 @@ class ResultsVC: UIViewController {
         
         print("DISTANCE: \(distance)")
         let camera = GMSCameraPosition.camera(withLatitude: midLatitude, longitude: midLongitude, zoom:11)
-        mapView = GMSMapView.map(withFrame: CGRect(x:10,y:64,width:350,height:500), camera: camera)
+        mapView = GMSMapView.map(withFrame: CGRect(x:0,y:65,width:400,height:450), camera: camera)
         //        mapView.center = self.view.center
         self.view.addSubview(mapView)
         //        view = mapView
@@ -71,13 +73,13 @@ class ResultsVC: UIViewController {
         let userMarker = GMSMarker()
         userMarker.position = positions.thisUsersLocation
         userMarker.title = "Your Location"
-        userMarker.icon = GMSMarker.markerImage(with: .green)
+        userMarker.icon = GMSMarker.markerImage(with: .black)
         userMarker.map = mapView
         // Creates a marker for other person's location on the map.
         let otherMarker = GMSMarker()
         otherMarker.position = positions.otherUsersLocation
         otherMarker.title = "Their Location"
-        otherMarker.icon = GMSMarker.markerImage(with: .red)
+        otherMarker.icon = GMSMarker.markerImage(with: .black)
         otherMarker.map = mapView
         
         //TODO: Make radius larger for smaller distances
@@ -86,55 +88,167 @@ class ResultsVC: UIViewController {
         circle.strokeWidth = 2
         circle.map = mapView
         
-        downloadCafeDetails {
-            self.buildCafeMarkers()
+        downloadDetails {
+            if self.rSwitch {
+                self.buildRestaurantMarkers()
+            }
+            if self.cSwitch {
+                self.buildCafeMarkers()
+            }
+            if self.bSwitch {
+                self.buildBarMarkers()
+            }
         }
         
     }
     
-    func downloadCafeDetails(completed: @escaping DownloadComplete) {
-        Alamofire.request(CAFEURL).responseJSON { (response) in
-            
-            if let dict = response.result.value as? Dictionary<String,Any> {
-                if let example = dict["results"] as? [Dictionary<String,Any>] {
-                    print("######### \(example.count) #########")
-                    for index in 0..<example.count {
-                        var cafeName: String!
-                        var cafeLatitude: Double!
-                        var cafeLongitude: Double!
-                        var cafeRating: Int!
-                        let place = example[index]
-                        let geometry = place["geometry"] as? Dictionary<String,Any>
-                        if let position = geometry?["location"] as? Dictionary<String,Double> {
-                            print("%%%%%%%%%%%%%%%")
-                            print(position["lat"]!)
-                            cafeLatitude = position["lat"]
-                            print(position["lng"]!)
-                            cafeLongitude = position["lng"]
+    func downloadDetails(completed: @escaping DownloadComplete) {
+        
+        // RESTAURANT REQUEST
+        if rSwitch {
+            Alamofire.request(RESTAURANTURL).responseJSON { (response) in
+                if let dict = response.result.value as? Dictionary<String,Any> {
+                    if let example = dict["results"] as? [Dictionary<String,Any>] {
+                        print("######### \(example.count) #########")
+                        for index in 0..<example.count {
+                            var restaurantName: String!
+                            var restaurantLatitude: Double!
+                            var restaurantLongitude: Double!
+                            var restaurantRating: Int!
+                            let place = example[index]
+                            let geometry = place["geometry"] as? Dictionary<String,Any>
+                            if let position = geometry?["location"] as? Dictionary<String,Double> {
+                                print("%%%%%%%%%%%%%%%")
+                                print(position["lat"]!)
+                                restaurantLatitude = position["lat"]
+                                print(position["lng"]!)
+                                restaurantLongitude = position["lng"]
+                            }
+                            if let name = place["name"] as? String {
+                                restaurantName = name
+                                print(restaurantName)
+                            }
+                            if let rating = place["rating"] as? Int {
+                                restaurantRating = rating
+                                print(restaurantRating)
+                                print("%%%%%%%%%%%%%%%")
+                            } else {
+                                restaurantRating = 0
+                            }
+                            let newRestaurant = Restaurant(latitude: restaurantLatitude, longitude: restaurantLongitude, name: restaurantName, rating: restaurantRating)
+                            self.restaurantArray.append(newRestaurant)
                         }
-                        if let name = place["name"] as? String {
-                            cafeName = name
-                            print(cafeName)
-                        }
-                        if let rating = place["rating"] as? Int {
-                            cafeRating = rating
-                            print(cafeRating)
-                            print("%%%%%%%%%%%%%%%")
-                        } else {
-                            cafeRating = 0
-                        }
-                        let newCafe = Cafe(latitude: cafeLatitude, longitude: cafeLongitude, name: cafeName, rating: cafeRating)
-                        self.cafeArray.append(newCafe)
                     }
                 }
+                completed()
             }
-            completed()
+        }
+        
+        // CAFE REQUEST
+        if cSwitch {
+            Alamofire.request(CAFEURL).responseJSON { (response) in
+                if let dict = response.result.value as? Dictionary<String,Any> {
+                    if let example = dict["results"] as? [Dictionary<String,Any>] {
+                        print("######### \(example.count) #########")
+                        for index in 0..<example.count {
+                            var cafeName: String!
+                            var cafeLatitude: Double!
+                            var cafeLongitude: Double!
+                            var cafeRating: Int!
+                            let place = example[index]
+                            let geometry = place["geometry"] as? Dictionary<String,Any>
+                            if let position = geometry?["location"] as? Dictionary<String,Double> {
+                                print("%%%%%%%%%%%%%%%")
+                                print(position["lat"]!)
+                                cafeLatitude = position["lat"]
+                                print(position["lng"]!)
+                                cafeLongitude = position["lng"]
+                            }
+                            if let name = place["name"] as? String {
+                                cafeName = name
+                                print(cafeName)
+                            }
+                            if let rating = place["rating"] as? Int {
+                                cafeRating = rating
+                                print(cafeRating)
+                                print("%%%%%%%%%%%%%%%")
+                            } else {
+                                cafeRating = 0
+                            }
+                            let newCafe = Cafe(latitude: cafeLatitude, longitude: cafeLongitude, name: cafeName, rating: cafeRating)
+                            self.cafeArray.append(newCafe)
+                        }
+                    }
+                }
+                completed()
+            }
+        }
+        
+        // BAR REQUEST
+        if bSwitch {
+            Alamofire.request(BARURL).responseJSON { (response) in
+                if let dict = response.result.value as? Dictionary<String,Any> {
+                    if let example = dict["results"] as? [Dictionary<String,Any>] {
+                        print("######### \(example.count) #########")
+                        for index in 0..<example.count {
+                            var barName: String!
+                            var barLatitude: Double!
+                            var barLongitude: Double!
+                            var barRating: Int!
+                            let place = example[index]
+                            let geometry = place["geometry"] as? Dictionary<String,Any>
+                            if let position = geometry?["location"] as? Dictionary<String,Double> {
+                                print("%%%%%%%%%%%%%%%")
+                                print(position["lat"]!)
+                                barLatitude = position["lat"]
+                                print(position["lng"]!)
+                                barLongitude = position["lng"]
+                            }
+                            if let name = place["name"] as? String {
+                                barName = name
+                                print(barName)
+                            }
+                            if let rating = place["rating"] as? Int {
+                                barRating = rating
+                                print(barRating)
+                                print("%%%%%%%%%%%%%%%")
+                            } else {
+                                barRating = 0
+                            }
+                            let newBar = Bar(latitude: barLatitude, longitude: barLongitude, name: barName, rating: barRating)
+                            self.barArray.append(newBar)
+                        }
+                    }
+                }
+                completed()
+            }
         }
     }
     
+    // RESTAURANT MARKER FUNCTION
+    func buildRestaurantMarkers() {
+        markerArray.removeAll()
+        for restaurant in restaurantArray {
+            let restaurantMarker = GMSMarker()
+            restaurantMarker.position = CLLocationCoordinate2D(latitude: restaurant.latitude, longitude: restaurant.longitude)
+            restaurantMarker.title = restaurant.name
+            restaurantMarker.snippet = "Rating: \(restaurant.rating)/5"
+            markerArray.append(restaurantMarker)
+        }
+        for marker in markerArray {
+            let markerLocation = CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude)
+            let centerOfCircle = CLLocation(latitude: midpoint.latitude, longitude: midpoint.longitude)
+            let distanceToCenter: CLLocationDistance = markerLocation.distance(from: centerOfCircle)
+            if distanceToCenter < newCircleRadius {
+                marker.map = mapView
+                marker.icon = GMSMarker.markerImage(with: .red)
+            }
+        }
+    }
+    
+    // CAFE MARKER FUNCTION
     func buildCafeMarkers() {
         markerArray.removeAll()
-        
         for cafe in cafeArray {
             let cafeMarker = GMSMarker()
             cafeMarker.position = CLLocationCoordinate2D(latitude: cafe.latitude, longitude: cafe.longitude)
@@ -142,7 +256,27 @@ class ResultsVC: UIViewController {
             cafeMarker.snippet = "Rating: \(cafe.rating)/5"
             markerArray.append(cafeMarker)
         }
-        
+        for marker in markerArray {
+            let markerLocation = CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude)
+            let centerOfCircle = CLLocation(latitude: midpoint.latitude, longitude: midpoint.longitude)
+            let distanceToCenter: CLLocationDistance = markerLocation.distance(from: centerOfCircle)
+            if distanceToCenter < newCircleRadius {
+                marker.map = mapView
+                marker.icon = GMSMarker.markerImage(with: .green)
+            }
+        }
+    }
+    
+    // BAR MARKER FUNCTION
+    func buildBarMarkers() {
+        markerArray.removeAll()
+        for bar in barArray {
+            let barMarker = GMSMarker()
+            barMarker.position = CLLocationCoordinate2D(latitude: bar.latitude, longitude: bar.longitude)
+            barMarker.title = bar.name
+            barMarker.snippet = "Rating: \(bar.rating)/5"
+            markerArray.append(barMarker)
+        }
         for marker in markerArray {
             let markerLocation = CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude)
             let centerOfCircle = CLLocation(latitude: midpoint.latitude, longitude: midpoint.longitude)
