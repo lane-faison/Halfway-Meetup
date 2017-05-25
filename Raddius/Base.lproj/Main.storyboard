@@ -136,6 +136,9 @@
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LTy-0b-7jA">
                                                 <rect key="frame" x="0.0" y="0.0" width="109.5" height="31"/>
+                                                <connections>
+                                                    <action selector="restaurantSwitch:" destination="BYZ-38-t0r" eventType="valueChanged" id="dsC-dg-0Vq"/>
+                                                </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurants" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XvM-m8-At2">
                                                 <rect key="frame" x="107.5" y="0.0" width="107.5" height="31"/>
@@ -153,6 +156,9 @@
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NTa-O5-fsc">
                                                 <rect key="frame" x="0.0" y="0.0" width="109.5" height="31"/>
+                                                <connections>
+                                                    <action selector="cafeSwitch:" destination="BYZ-38-t0r" eventType="valueChanged" id="wf1-oh-QFs"/>
+                                                </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cofee Shops" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7L-zj-NgL">
                                                 <rect key="frame" x="107.5" y="0.0" width="107.5" height="31"/>
@@ -170,6 +176,9 @@
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JtP-RE-deW">
                                                 <rect key="frame" x="0.0" y="0.0" width="109.5" height="31"/>
+                                                <connections>
+                                                    <action selector="barSwitch:" destination="BYZ-38-t0r" eventType="valueChanged" id="zBM-pM-lR1"/>
+                                                </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Cs-KE-2ZQ">
                                                 <rect key="frame" x="107.5" y="0.0" width="107.5" height="31"/>

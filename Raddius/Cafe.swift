@@ -13,7 +13,6 @@ class Cafe {
     private var _longitude: Double!
     private var _name: String!
     private var _rating: Int!
-//    private var _priceLevel: Int!
 //    private var _open_now: Bool!
 //    private var _id: String!
 //    private var _vicinity: String!
@@ -43,13 +42,6 @@ class Cafe {
         return _rating
     }
     
-//    var priceLevel: Int {
-//        if _priceLevel == nil {
-//            _priceLevel = 0
-//        }
-//        return _priceLevel
-//    }
-    
 //    var open_now: Bool {
 //        if _open_now == nil {
 //            _open_now = true
@@ -78,7 +70,6 @@ class Cafe {
         self._longitude = longitude
         self._name = name
         self._rating = rating
-//        self._priceLevel = priceLevel
     }
     
 }
