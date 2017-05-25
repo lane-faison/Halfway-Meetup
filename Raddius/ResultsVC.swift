@@ -13,12 +13,16 @@ import Alamofire
 class ResultsVC: UIViewController {
     
     var positions: Positions!
+    var BARURL: String!
     var CAFEURL: String!
+    var RESTAURANTURL: String!
     var mapView: GMSMapView!
     var circle: GMSCircle!
     var circleRadius: CLLocationDegrees!
     var midpoint: CLLocationCoordinate2D!
     var cafeArray = [Cafe]()
+//    var barArray = [Bar]()
+//    var restaurantArray = [Restaurant]()
     var newCircleRadius: CLLocationDegrees!
     var markerArray = [GMSMarker]()
     
@@ -43,8 +47,8 @@ class ResultsVC: UIViewController {
         CAFEURL = "\(BASE_URL)\(midLatitude),\(midLongitude)&radius=\(getCallRadius)\(CAFE_URL)\(GP_API)"
         
         print("DISTANCE: \(distance)")
-        let camera = GMSCameraPosition.camera(withLatitude: midLatitude, longitude: midLongitude, zoom:13)
-        mapView = GMSMapView.map(withFrame: CGRect(x:10,y:20,width:350,height:500), camera: camera)
+        let camera = GMSCameraPosition.camera(withLatitude: midLatitude, longitude: midLongitude, zoom:11)
+        mapView = GMSMapView.map(withFrame: CGRect(x:10,y:64,width:350,height:500), camera: camera)
         //        mapView.center = self.view.center
         self.view.addSubview(mapView)
         //        view = mapView
@@ -69,8 +73,6 @@ class ResultsVC: UIViewController {
         circle.map = mapView
         
         downloadCafeDetails {
-            print("$$$$$$$$$$")
-            print(self.cafeArray)
             self.buildCafeMarkers()
         }
         
@@ -86,6 +88,8 @@ class ResultsVC: UIViewController {
                         var cafeName: String!
                         var cafeLatitude: Double!
                         var cafeLongitude: Double!
+                        var cafeRating: Int!
+//                        var cafePriceLevel: Int!
                         let place = example[index]
                         let geometry = place["geometry"] as? Dictionary<String,Any>
                         if let position = geometry?["location"] as? Dictionary<String,Double> {
@@ -98,9 +102,20 @@ class ResultsVC: UIViewController {
                         if let name = place["name"] as? String {
                             cafeName = name
                             print(cafeName)
-                            print("%%%%%%%%%%%%%%%")
                         }
-                        let newCafe = Cafe(latitude: cafeLatitude, longitude: cafeLongitude, name: cafeName)
+                        if let rating = place["rating"] as? Int {
+                            cafeRating = rating
+                            print(cafeRating)
+                            print("%%%%%%%%%%%%%%%")
+                        } else {
+                            cafeRating = 0
+                        }
+//                        if let priceLevel = place["price_level"] as? Int {
+//                            cafePriceLevel = priceLevel
+//                            print(cafePriceLevel)
+//                            print("%%%%%%%%%%%%%%%")
+//                        }
+                        let newCafe = Cafe(latitude: cafeLatitude, longitude: cafeLongitude, name: cafeName, rating: cafeRating)
                         self.cafeArray.append(newCafe)
                     }
                 }
@@ -116,6 +131,7 @@ class ResultsVC: UIViewController {
             let cafeMarker = GMSMarker()
             cafeMarker.position = CLLocationCoordinate2D(latitude: cafe.latitude, longitude: cafe.longitude)
             cafeMarker.title = cafe.name
+            cafeMarker.snippet = "Rating: \(cafe.rating)/5"
             markerArray.append(cafeMarker)
         }
         
@@ -140,4 +156,7 @@ class ResultsVC: UIViewController {
         self.buildCafeMarkers()
     }
     
+    @IBAction func backBtnPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
 }

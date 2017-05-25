@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -258,17 +258,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.10000000000000001" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="en5-r6-Q3P">
-                                <rect key="frame" x="48" y="537" width="279" height="31"/>
+                                <rect key="frame" x="48" y="570" width="279" height="31"/>
                                 <connections>
                                     <action selector="changeCircleRadius:" destination="Tve-aP-1Zz" eventType="valueChanged" id="HSG-U6-1pd"/>
                                 </connections>
                             </slider>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-0I-JPl">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="UzB-wR-acT"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Results" id="iFe-rb-Azy">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="SiG-xg-5kU">
+                                            <connections>
+                                                <action selector="backBtnPressed:" destination="Tve-aP-1Zz" id="vLF-r7-gD7"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="en5-r6-Q3P" firstAttribute="leading" secondItem="XZ2-AA-K14" secondAttribute="leading" constant="50" id="UEm-nn-241"/>
-                            <constraint firstItem="3f9-dv-xxa" firstAttribute="top" secondItem="en5-r6-Q3P" secondAttribute="bottom" constant="100" id="hbP-Mi-nvS"/>
+                            <constraint firstItem="dr1-0I-JPl" firstAttribute="leading" secondItem="XZ2-AA-K14" secondAttribute="leading" id="WZd-mJ-Lhs"/>
+                            <constraint firstItem="en5-r6-Q3P" firstAttribute="top" secondItem="UE7-1L-92m" secondAttribute="bottom" constant="550" id="o26-fx-Y1e"/>
+                            <constraint firstAttribute="trailing" secondItem="dr1-0I-JPl" secondAttribute="trailing" id="uqT-ir-7bU"/>
                             <constraint firstAttribute="trailing" secondItem="en5-r6-Q3P" secondAttribute="trailing" constant="50" id="uub-K2-jCY"/>
+                            <constraint firstItem="dr1-0I-JPl" firstAttribute="top" secondItem="XZ2-AA-K14" secondAttribute="top" constant="20" id="yD3-H6-wgW"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -278,7 +296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nxi-Pb-w3K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="961" y="38"/>
+            <point key="canvasLocation" x="1100" y="38"/>
         </scene>
     </scenes>
     <resources>

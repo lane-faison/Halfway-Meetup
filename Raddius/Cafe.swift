@@ -7,12 +7,13 @@
 //
 
 import Foundation
-import Alamofire
 
 class Cafe {
     private var _latitude: Double!
     private var _longitude: Double!
     private var _name: String!
+    private var _rating: Int!
+//    private var _priceLevel: Int!
 //    private var _open_now: Bool!
 //    private var _id: String!
 //    private var _vicinity: String!
@@ -34,6 +35,20 @@ class Cafe {
         }
         return _name
     }
+    
+    var rating: Int {
+        if _rating == nil {
+            _rating = 0
+        }
+        return _rating
+    }
+    
+//    var priceLevel: Int {
+//        if _priceLevel == nil {
+//            _priceLevel = 0
+//        }
+//        return _priceLevel
+//    }
     
 //    var open_now: Bool {
 //        if _open_now == nil {
@@ -58,10 +73,12 @@ class Cafe {
     
     // Will need to set a radius functionally here using lat and long.
     
-    init(latitude: Double, longitude: Double, name: String) {
+    init(latitude: Double, longitude: Double, name: String, rating: Int) {
         self._latitude = latitude
         self._longitude = longitude
         self._name = name
+        self._rating = rating
+//        self._priceLevel = priceLevel
     }
     
 }
