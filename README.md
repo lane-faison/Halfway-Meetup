@@ -1,6 +1,6 @@
 # Independent Project: Halfway Meetup, an iOS App
 
-![iPhone App](http://localhost:3000/assets/images/logos-projects/HalfwayMeetupMockup.png)
+![iPhone App](http://localhost:3000/assets/images/logos-projects/HalfwayMeetupMockup.png "Screenshots")
 
 
 ## Project/Application Name
