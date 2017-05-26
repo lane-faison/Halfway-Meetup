@@ -2,7 +2,6 @@
 
 ![iPhone App](https://lanefaison.com/assets/images/logos-projects/HalfwayMeetupMockup.png "Screenshots")
 
-
 ## Project/Application Name
   Halfway Meetup
 
@@ -13,7 +12,6 @@ This iOS application was a personal project I decided to do to help facilitate u
   Users who are looking to quickly find a spot somewhere between them and another person to meet up for drinks, food, or coffee.
 
 ## What outputs do they need?
-Marker on map with information:
 * Location markers on specific restaurants, bars, and/or coffee shops
 * Establishment name
 * Establishment rating
@@ -34,4 +32,5 @@ Marker on map with information:
 * Switches to easily enable the user to turn on or off the app locating the different venue categories
 * Expandable radius for returned search results
 
-
+## Biggest challenge
+* Return results only contained within the circle around the center point and then returning more results as the circle's radius is expanded.
