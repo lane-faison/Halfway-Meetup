@@ -4,24 +4,24 @@
 
 
 ## Project/Application Name
-  Running Social
+  Halfway Meetup
 
 ## Project Description
-  Running Social is a mobile app that will allow registered users to create and publish planned runs, storing and displaying locations and start times so that others can join in on the event. Run organizers can publish their events for all to see, and other users can use run lists and map info to decide which runs to join.
-
-  Video: https://youtu.be/XGx0eWai6Gw
-
-  ![Landing Page](https://cloud.githubusercontent.com/assets/20194482/26029386/f9d5f966-37f0-11e7-988b-70eb3f0defbc.jpg)
-
+This iOS application was a personal project I decided to do to help facilitate users in finding a place to meetup for drinks, food, or coffee with another person. This app determines the location of both parties and finds meetup spots in the geographic center. The radius within which the results are returned can be expanded to view more possibilities.
 
 ## Who uses it?
-  Runners who want to run with other runners, runners who are seeking group runs or training partners
+  Users who are looking to quickly find a spot somewhere between them and another person to meet up for drinks, food, or coffee.
 
 ## What outputs do they need?
 Marker on map with information:
-* 
+* Location markers on specific restaurants, bars, and/or coffee shops
+* Establishment name
+* Establishment rating
+
 ## What inputs are needed to generate those outputs?
-* 
+* User's current location or user's set location
+* Other individual's location
+* What kind of venue the user is looking for (restaurant, bar, coffee shop)
 
 ## What technologies do you plan to use?
 * Swift
@@ -31,15 +31,7 @@ Marker on map with information:
 * Alamofire
 
 ## Feature list
-* 
+* Switches to easily enable the user to turn on or off the app locating the different venue categories
+* Expandable radius for returned search results
 
-## Stretch
-* 
 
-![Login](https://cloud.githubusercontent.com/assets/20194482/26029387/f9d6ddd6-37f0-11e7-9459-2806fcd7b8e7.jpg)
-
-![Upcoming Runs](https://cloud.githubusercontent.com/assets/20194482/26029388/f9db7e90-37f0-11e7-9543-709461ba2fea.jpg)
-
-![Selected Run](https://cloud.githubusercontent.com/assets/20194482/26029390/f9df5236-37f0-11e7-953b-7c168fef74a2.jpg)
-
-![Build a Run](https://cloud.githubusercontent.com/assets/20194482/26029391/f9e1e9c4-37f0-11e7-85f0-248fd4670ceb.jpg)
